@@ -87,6 +87,7 @@ in
     wl-clipboard
     tigervnc
     gh
+    lazygit
     filezilla
     obsidian
     libreoffice

@@ -23,14 +23,9 @@ in
       ssh = "kitty +kitten ssh";
 
       c = "claude";
-      # No local-model alias for Claude Code itself (removed) - it always
-      # sends a large fixed tool-context payload regardless of backend,
-      # which swamps a small/fast local model and isn't worth it even for
-      # Qwen. Local models stay reachable through OpenCode and CodeCompanion.
 
       # llm-ctl: picks and runs one local model at a time (see llm-ctl/).
       llm = "bash ${home}/nixos-dotfiles/llm-ctl/llm-ctl.sh";
-      model-stop = "bash ${home}/nixos-dotfiles/llm-ctl/llm-ctl.sh stop";
 
       ll = "ls -l";
       la = "ls -a";
@@ -39,6 +34,11 @@ in
       gc = "git commit";
       gp = "git push";
       gst = "git status";
+      
+      #kitty sessions 
+      workspace="kitty @ load-config --session ${home}/nixos-dotfiles/config/kitty/sessions/job.conf";
+      devspace="kitty @ load-config --session ${home}/nixos-dotfiles/config/kitty/sessions/csharp.conf";
+
     };
 
     initExtra = ''
