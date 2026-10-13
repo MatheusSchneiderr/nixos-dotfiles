@@ -1,0 +1,10 @@
+{
+  "defaultProvider": "local-gpu",
+  "defaultModel": "fast",
+  "packages": [
+    {
+      "source": "npm:pi-agent-suite@2.11.2",
+      "extensions": ["extensions/context-projection/*"]
+    }
+  ]
+}

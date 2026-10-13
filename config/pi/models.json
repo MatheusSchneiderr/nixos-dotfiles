@@ -1,0 +1,50 @@
+{
+  "providers": {
+    "local-gpu": {
+      "baseUrl": "http://127.0.0.1:8901/v1",
+      "api": "openai-completions",
+      "apiKey": "not-needed",
+      "models": [
+        {
+          "id": "tiel-coder",
+          "reasoning": true,
+          "contextWindow": 65536,
+          "compat": {
+            "thinkingFormat": "chat-template",
+            "chatTemplateKwargs": {
+              "enable_thinking": { "$var": "thinking.enabled" },
+              "reasoning_effort": { "$var": "thinking.effort" },
+              "preserve_thinking": true
+            }
+          }
+        },
+        {
+          "id": "general-purpose-qwen3.8",
+          "reasoning": true,
+          "contextWindow": 65536,
+          "compat": {
+            "thinkingFormat": "chat-template",
+            "chatTemplateKwargs": {
+              "enable_thinking": { "$var": "thinking.enabled" },
+              "reasoning_effort": { "$var": "thinking.effort" },
+              "preserve_thinking": true
+            }
+          }
+        },
+        {
+          "id": "fast",
+          "reasoning": true,
+          "contextWindow": 65536,
+          "compat": {
+            "thinkingFormat": "chat-template",
+            "chatTemplateKwargs": {
+              "enable_thinking": { "$var": "thinking.enabled" },
+              "reasoning_effort": { "$var": "thinking.effort" },
+              "preserve_thinking": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

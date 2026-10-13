@@ -1,0 +1,13 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+'",
+        "command": "workbench.action.terminal.openNativeConsole",
+        "when": "!isSessionsWindow && !terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "-workbench.action.terminal.openNativeConsole",
+        "when": "!isSessionsWindow && !terminalFocus"
+    }
+]

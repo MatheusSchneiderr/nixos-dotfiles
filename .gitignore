@@ -1,0 +1,14 @@
+config/vscode/globalStorage/*
+config/vscode/workspaceStorage/*
+config/vscode/History/*
+
+# local-only, client-specific devshell and helper scripts - not for public repo
+devshells/job/
+/scripts
+
+# nix build / nixos-rebuild build output symlink
+result
+
+# Python bytecode cache
+__pycache__/
+*.pyc

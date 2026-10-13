@@ -1,0 +1,98 @@
+{
+    "terminal.external.linuxExec": "kitty",
+    // Debloat & turn off telemetry
+    "ai.enabled": false,
+    "github.copilot.enable": false,
+    "inlineSuggest.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "editor.renderWheelQuestions": false,
+    "editor.cursorBlinking": "solid",
+    "editor.cursorSmoothCaretAnimation": "off",
+    "search.followSymlinks": false,
+    "workbench.statusBar.visible": true,
+    "editor.minimap.enabled": false,
+    "workbench.layoutControl.enabled": false,
+    "chat.experimental.sidebar": false,
+
+
+    // Nix LSP
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nixd",
+    "nix.formatterPath": [
+        "nixpkgs-fmt"
+    ],
+    "[nix]": {
+        "editor.defaultFormatter": "jnoortheen.nix-ide",
+        "editor.formatOnSave": true
+    },
+    "nix.serverSettings": {
+    "nixd": {
+        "formatting": {
+            "command": [ "nixpkgs-fmt" ]
+        },
+        "options": {
+            "nixos": {
+                "expr": "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.nixos.options"
+            }
+        }
+    },
+    
+    // Itelephense
+    "intelephense.telemetry.enabled": false,
+    "intelephense.completion.triggerParameterHints": true,
+    "intelephense.phpVersion": "7.4.0",
+    "php.validate.executablePath": "php",
+    
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+        "editor.formatOnSave": true
+    },
+
+
+
+    // Csharp and Fsharp configs
+    "dotnet.autoSdkDownload": false,
+    "dotnetAcquisitionExtension.existingDotnetPath": [
+        {
+        "extensionId": "ms-dotnettools.csharp",
+        "path": "dotnet"
+        },
+        {
+        "extensionId": "ms-dotnettools.csdevkit",
+        "path": "dotnet"
+        }
+    ],
+    "FSharp.toolsPath": "dotnet",
+    "FSharp.smartClose": true,
+    "html.suggest.html5": true,
+    "editor.linkedEditing": true,
+    "editor.ormatOnSave": true
+    },
+
+    // just so they get colorful
+    "files.associations": {
+    "*.csproj": "xml",
+    "*.fsproj": "xml",
+
+    //aspire 
+    "aspire.aspireCliExecutablePath": "${aspire-cli}/bin/aspire",
+},
+"chat.disableAIFeatures": true,
+"editor.fontFamily": "'JetBrainsMono Nerd Font', monospace",
+  "workbench.colorCustomizations": {
+      "activityBar.border": "#00000000",
+      "sideBar.border": "#00000000",
+      "sideBarSectionHeader.border": "#00000000",
+      "panel.border": "#00000000",
+      "tab.border": "#00000000",
+      "editorGroup.border": "#00000000",
+      "editorGroupHeader.tabsBorder": "#00000000",
+      "statusBar.border": "#00000000",
+      "titleBar.border": "#00000000",
+      "commandCenter.border": "#00000000",
+      "widget.border": "#00000000",
+      "input.border": "#00000000",
+      "focusBorder": "#00000000"
+},
+"terminal.integrated.enableMultiLinePasteWarning": "never"
+}

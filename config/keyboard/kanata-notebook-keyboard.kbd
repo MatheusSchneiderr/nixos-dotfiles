@@ -1,0 +1,90 @@
+;; Plain passthrough, except:
+;; - the Copilot key (physical chord Super_L + F23) is remapped to Super + V
+;; - Caps Lock is tap-hold: tap = Esc, hold = Ctrl
+;; - Home row is modtap: a/s/d/f/j/k/l/scln(ç) tap = letter, hold = shift/alt/ctrl/meta
+;; - Space is tap-hold: tap = Space, hold = nav layer (see `nav` below)
+(defsrc
+  grv       1         2         3         4         5         6         7         8         9         0         min       eql       bspc
+  tab       q         w         e         r         t         y         u         i         o         p         lbrc      rbrc      bksl
+  caps      a         s         d         f         g         h         j         k         l         scln      apo             ret
+  lsft      nubs      z         x         c         v         b         n         m         comm      Period    Slash           rsft
+  lctl      lmet      lalt                              spc                                 ralt      f23                 up
+                                                                                                                   left  down  right)
+
+(defalias
+  caps_esc (tap-hold-release 200 200 esc lctl)
+  spc_nav (tap-hold-release 200 200 spc (layer-while-held nav))
+  spc_num (tap-hold-release 200 200 spc (layer-while-held num))
+  tab_mov (tap-hold-release 200 200 tab (layer-while-held mov)) 
+  esc_sym (tap-hold-release 200 200 esc (layer-while-held sym))
+  bspc_act (tap-hold-release 200 200 bspc (layer-while-held act)) 
+
+  a_sft (tap-hold 200 200 a lsft)
+  s_alt (tap-hold 200 200 s lalt)
+  d_ctl (tap-hold 200 200 d lctl)
+  f_met (tap-hold 200 200 f lmet)
+  j_met (tap-hold 200 200 j lmet)
+  k_ctl (tap-hold 200 200 k lctl)
+  l_alt (tap-hold 200 200 l lalt)
+  scln_sft (tap-hold 200 200 scln lsft))
+
+;; og base if I ever want to switch back
+(deflayer base
+  grv       1         2         3         4         5         6         7         8         9         0         min       eql       bspc
+  tab       q         w         e         r         t         y         u         i         o         p         lbrc      rbrc      bksl
+  @caps_esc @a_sft    @s_alt    @d_ctl    @f_met    g         h         @j_met    @k_ctl    @l_alt    @scln_sft apo             ret
+  lsft      nubs      z         x         c         v         b         n         m         comm      Period    Slash           rsft
+  lctl      lmet      lalt                              @spc_nav                            ralt      v                   up
+                                                                                                                   left  down  right)
+
+;; 34 key base im experimenting with
+(deflayer base_old
+  XX         q         w         e         r         t         XX         XX         y         u         i         o         p         XX   
+  XX         @a_sft    @s_alt    @d_ctl    @f_met    g         XX         XX         h         @j_met    @k_ctl    @l_alt    @scln_sft XX   
+  XX         z         x         c         v         b         XX         XX         n         m         comm      Period           Slash   
+  XX         XX        XX        XX        @spc_num  @tab_mov  XX         XX         @esc_sym  @bspc_act XX        XX               XX   
+  XX         XX        XX                                      XX                              XX        XX              up
+                                                                                                                   left  down  right)
+;; ro is the abnt2 key for /
+(deflayer sym
+  XX         ro        S-ro      S-grv     S-8       S-2       XX         XX         S-7       S-eql     S-9       S-0       lbrc      XX   
+  XX         grv       S-comm    eql       S-Period  S-nubs    XX         XX         S-min     S-min     S-rbrc    S-bksl    apo       XX   
+  XX         nubs      lsft      lctl      S-1       S-3       XX         XX         S-5       S-4       rbrc      bksl             XX      
+  XX         XX        XX        XX        spc       ret       XX         XX         esc       bspc      XX        XX               XX   
+  XX         XX        XX                                      XX                              XX        XX               up
+                                                                                                                   left  down  right)
+(deflayer num
+  XX         f1        f2        f3        f4        f5        XX         XX         ro        7         8         9         S-8       XX   
+  XX         f6        f7        f8        f9        f10       XX         XX         min       4         5         6         comm      XX   
+  XX         lsft      lalt      lctl      f11       f12       XX         XX         S-eql     1         2         3                Period   
+  XX         XX        XX        XX        spc       tab       XX         XX         ret       0         XX        XX               XX   
+  XX         XX        XX                                      XX                    XX        XX                         up
+                                                                                                                   left  down  right)
+(deflayer mov
+  XX         XX        XX        XX        XX        XX        XX         XX         XX        XX        XX        XX        XX         XX   
+  XX         lsft      lalt      lctl      lmet      XX        XX         XX         left      up        down      right     XX         XX   
+  XX         XX        XX        XX        XX        XX        XX         XX         home      end       XX        XX               XX   
+  XX         XX        XX        XX        spc       tab       XX         XX         esc       del       XX        XX               XX   
+  XX         XX        XX                                      XX                    XX         XX                        up
+                                                                                                                   left  down  right)
+(deflayer act
+  XX         XX         XX       e         XX        XX        XX         XX         XX        u         i         o         lbrc       XX   
+  XX         a          XX       XX        XX        XX        XX         XX         XX        XX        XX        S-lbrc    apo        XX   
+  XX         XX         XX       XX        XX        XX        XX         XX         XX        XX        XX        S-apo            XX   
+  XX         XX         XX       XX        spc       tab       XX         XX         esc       del       XX        XX               XX   
+  XX         XX         XX                                     XX                    XX        XX                         up
+                                                                                                                   left  down  right)
+
+;; Nav layer, active while Space is held:
+;; - a/s/d/f = shift/alt/ctrl/gui (held modifiers, matches base homerow order)
+;; - h/j/k/l = left/down/up/right
+;; - i/o = home/end
+;; - Backspace key becomes Delete (its physical position is small on this keyboard)
+;; Everything else is transparent (falls through to base).
+(deflayer nav
+  _         _         _         _         _         _         _         _         _         _         _         _         _         del
+  _         _         _         _         _         _         _         _         home      end       _         _         _         _
+  _         lsft      lalt      lctl      lmet      _         left      down      up        right     _         _             _
+  _         _         _         _         _         _         _         _         _         _         _         _             _
+  _         _         _                             _                                   _         _                   _
+                                                                                                                _     _     _)

@@ -1,0 +1,96 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+&mt {
+    tapping-term-ms = <200>;
+    require-prior-idle-ms = <60>;
+    flavor = "balanced";
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        combo_enter {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            bindings = <&kp RET>;
+            layers = <0>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "Base";
+            bindings = <
+&kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
+&mt LSHFT A   &mt LALT S    &mt LCTRL D   &mt LGUI F    &kp G             &kp H         &mt RGUI J    &mt RCTRL K   &mt RALT L    &mt RSHFT SEMI
+&kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+                            &lt 2 SPACE   &lt 1 TAB         &lt 3 ESC     &lt 5 BSPC
+            >;
+        };
+
+        mods_layer {
+            display-name = "Mods";
+            bindings = <
+&trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
+&kp LSHFT     &kp LALT      &kp LCTRL     &kp LGUI      &trans            &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp RSHFT
+&trans        &trans        &trans        &trans        &trans            &kp HOME      &trans        &trans        &trans        &kp END
+                            &trans        &trans            &trans        &kp DEL
+            >;
+        };
+
+        sym_layer {
+            display-name = "Sym.";
+            bindings = <
+&kp F1        &kp F2        &kp F3        &kp F4        &kp F5            &kp INT1      &kp N7        &kp N8        &kp N9        &kp LS(N8)
+&kp F6        &kp F7        &kp F8        &kp F9        &kp F10           &kp MINUS     &kp N4        &kp N5        &kp N6        &kp COMMA
+&kp LSHFT     &kp LALT      &kp LCTRL     &kp F11       &kp F12           &kp LS(EQUAL) &kp N1        &kp N2        &kp N3        &kp DOT
+                            &trans        &trans            &kp RET       &kp N0
+            >;
+        };
+
+        sym2_layer {
+            display-name = "Sym.2";
+            bindings = <
+&kp INT1      &kp LS(INT1)  &kp LS(GRAVE) &kp LS(N8)    &kp LS(N2)        &kp LS(N7)    &kp LS(EQUAL) &kp LS(N9)    &kp LS(N0)    &kp LBKT
+&kp GRAVE     &kp LS(COMMA) &kp EQUAL     &kp LS(DOT)   &kp LS(NUBS)      &kp LS(MINUS) &kp MINUS     &kp LS(RBKT)  &kp LS(BSLH)  &kp SQT
+&kp NUBS      &kp LSHFT     &kp LCTRL     &kp LS(N1)    &kp LS(N3)        &kp LS(N5)    &kp LS(N4)    &kp RBKT      &kp NUHS      &kp LS(MINUS)
+                            &trans        &kp RET           &kp LC(LCTRL) &trans
+            >;
+        };
+
+        frow_layer {
+            display-name = "FRow";
+            bindings = <
+&kp F1        &kp F2        &kp F3        &kp F4        &kp F5            &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
+&trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &kp F11
+&trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &kp F12
+                            &trans        &trans            &trans        &trans
+            >;
+        };
+
+        accent_layer {
+            display-name = "Accent";
+            bindings = <
+&trans        &trans        &kp E         &trans        &trans            &trans        &kp U         &kp I         &kp O         &kp LBKT
+&kp A         &studio_unlock &trans        &trans        &trans            &trans        &trans        &trans        &kp LS(LBKT)  &kp SQT
+&trans        &trans        &bootloader   &trans        &kp CAPS          &trans        &trans        &bootloader   &kp LS(SQT)   &trans
+                            &kp LSHFT     &trans            &trans        &trans
+            >;
+        };
+
+        sett_layer {
+            display-name = "Sett.";
+            bindings = <
+&bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3      &bt BT_SEL 4  &trans        &trans        &trans        &trans
+&trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
+&trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
+                            &trans        &trans            &trans        &trans
+            >;
+        };
+    };
+};
