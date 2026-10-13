@@ -187,11 +187,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # winboat depends on an EOL electron build; allow it until nixpkgs bumps winboat past 0.9.0
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-40.10.5"
-  ];
-
   environment.systemPackages = with pkgs; [
     vim
     wget

@@ -1,5 +1,17 @@
 { pkgs, ... }:
 
+let
+  # nixpkgs dropped Firefox 140 ESR (nixpkgs#567873, 2026-09-28), which broke
+  # zotero's build (nixpkgs#568692; fix open, unmerged: nixpkgs#569006).
+  # Pin zotero to the last nixpkgs rev before that drop until the fix lands.
+  zotero-pinned = (import (builtins.fetchTarball {
+    url = "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1063758.e8be7818e19a/nixexprs.tar.xz";
+    sha256 = "sha256-qeiZaY+0tpZXliRA9odCNx+sOfIOhnkcUq9t+ctPrRA=";
+  }) {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  }).zotero;
+in
 {
   imports = [
     ../../config/bash
@@ -78,7 +90,7 @@
     filezilla
     obsidian
     libreoffice
-    zotero
+    zotero-pinned
     vial
     winboat
     zmk-studio

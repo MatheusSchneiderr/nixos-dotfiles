@@ -2,6 +2,8 @@
 let
   # nixpkgs' llama-cpp has no SYCL variant; builds GGML_SYCL=ON with Intel's icx/icpx.
   llama-cpp-sycl = pkgs.llama-cpp.overrideAttrs (old: {
+    # nixpkgs' ctest binaries can't find the SYCL runtime libs (only wired up post-install, below).
+    doCheck = false;
     nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.intel-oneapi-toolkit ];
     buildInputs = (old.buildInputs or [ ]) ++ [
       pkgs.level-zero
