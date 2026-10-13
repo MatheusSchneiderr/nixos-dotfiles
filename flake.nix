@@ -1,6 +1,6 @@
 {
   description = "schneider's NixOS config";
-  # llama-cpp-sycl (pkgs/llama-cpp-sycl.nix) is built from source, in-repo,
+  # llama-cpp-sycl (config/llama-cpp-sycl/default.nix) is built from source, in-repo,
   # rather than as a separate cached repo - the icpx/SYCL compile step was
   # confirmed non-reproducible (Nix's determinism checker caught a rebuild
   # producing different, non-functional output from identical inputs), so
