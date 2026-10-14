@@ -1,5 +1,5 @@
 {
-    "terminal.external.linuxExec": "kitty",
+    "terminal.external.linuxExec": "foot",
     // Debloat & turn off telemetry
     "ai.enabled": false,
     "github.copilot.enable": false,

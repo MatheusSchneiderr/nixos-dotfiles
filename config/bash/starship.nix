@@ -3,7 +3,7 @@
 # structure there directly), but its color hex values are Stylix "markers" --
 # builtins.replaceStrings swaps each one for the live base16 color at build
 # time, so the prompt re-themes automatically when the Stylix scheme changes.
-# Pure Nix (matches how blesh/kitty interpolate Stylix colors in this repo)
+# Pure Nix (matches how blesh interpolates Stylix colors in this repo)
 # -- no perl, no runCommand, no extra derivation.
 { config, ... }:
 let

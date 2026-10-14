@@ -20,7 +20,6 @@ in
       mi = "cd ${home}/job";
       cs = "cd ${home}/projects/cfsharp";
       v = "nvim";
-      ssh = "kitty +kitten ssh";
 
       c = "claude";
 
@@ -35,10 +34,6 @@ in
       gp = "git push";
       gst = "git status";
       
-      #kitty sessions 
-      workspace="kitty @ load-config --session ${home}/nixos-dotfiles/config/kitty/sessions/job.conf";
-      devspace="kitty @ load-config --session ${home}/nixos-dotfiles/config/kitty/sessions/csharp.conf";
-
     };
 
     initExtra = ''

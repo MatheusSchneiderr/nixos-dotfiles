@@ -16,12 +16,13 @@ in
   imports = [
     ../../config/bash
     ../../config/dotnet-tools
-    ../../config/kitty
+    ../../config/foot
     ../../config/kde
     ../../config/llama-cpp-sycl
     ../../config/nvim
     ../../config/opencode
     ../../config/pi
+    ../../config/tmux
     ../../config/vscode
   ];
 
@@ -34,6 +35,7 @@ in
     enable = true;
     nix-direnv.enable = true;
   };
+  programs.foot.enable = true;
   programs.gh = {
     enable = true;
     settings.git_protocol = "https";
@@ -49,7 +51,6 @@ in
       credential.helper = "store";
     };
   };
-  programs.kitty.enable = true;
 
   programs.opencode.enable = true;
   programs.pi-coding-agent.enable = true;
@@ -66,6 +67,7 @@ in
     };
   };
   programs.starship.enable = true;
+  programs.tmux.enable = true;
   programs.vscode.enable = true;
 
   home.username = "schneider";
