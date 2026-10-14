@@ -67,7 +67,6 @@ in
     };
   };
   programs.starship.enable = true;
-  programs.tmux.enable = true;
   programs.vscode.enable = true;
 
   home.username = "schneider";
