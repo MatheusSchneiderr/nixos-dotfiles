@@ -1,0 +1,22 @@
+[default_session]
+startup_command = "claude --dangerously-skip-permissions"
+windows = ["code", "run", "git"]
+
+[[window]]
+name = "agent"
+startup_script = "claude --dangerously-skip-permissions"
+
+[[window]]
+name = "code"
+startup_script = "nvim"
+
+[[window]]
+name = "run"
+
+[[window]]
+name = "git"
+startup_script = "lazygit"
+
+[[session]]
+name = "nixos-dotfiles"
+path = "/home/schneider/nixos-dotfiles"
