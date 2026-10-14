@@ -1,6 +1,5 @@
 [default_session]
-startup_command = "claude --dangerously-skip-permissions"
-windows = ["code", "run", "git"]
+windows = ["agent", "code", "run", "git"]
 
 [[window]]
 name = "agent"
