@@ -30,6 +30,11 @@ return {
   -- These are some examples, uncomment them if you want to see them work!
   { 'akinsho/git-conflict.nvim', version = "*", config = true },
   {
+    "kdheepak/lazygit.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = { { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" } },
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
