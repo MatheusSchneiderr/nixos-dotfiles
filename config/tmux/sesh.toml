@@ -1,5 +1,6 @@
 [default_session]
-windows = ["agent", "code", "run", "git"]
+startup_command = "tmux rename-window agent && claude --dangerously-skip-permissions"
+windows = ["code", "run"]
 
 [[window]]
 name = "agent"
@@ -12,10 +13,14 @@ startup_script = "nvim"
 [[window]]
 name = "run"
 
-[[window]]
-name = "git"
-startup_script = "lazygit"
+[[wildcard]]
+pattern = "~/job/*"
+windows = ["code", "run"]
 
-[[session]]
-name = "nixos-dotfiles"
-path = "/home/schneider/nixos-dotfiles"
+[[wildcard]]
+pattern = "~/projects/**"
+windows = ["code", "run"]
+
+[[wildcard]]
+pattern = "~/nixos-dotfiles"
+windows = ["code", "run"]

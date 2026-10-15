@@ -5,9 +5,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  backgroundImage = ./assets/dark-pine-forest.jpg;
+  backgroundImage = ./assets/golden-larch-slope.jpg;
   # bright, jabuti, onedark-dark, phd, valua, woodland
-  base16Theme = "isotope";
+  base16Theme = "onedark-dark";
   base16SchemePath = "${pkgs.base16-schemes}/share/themes/${base16Theme}.yaml";
   sddmBreezeBackground = pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
     [General]
