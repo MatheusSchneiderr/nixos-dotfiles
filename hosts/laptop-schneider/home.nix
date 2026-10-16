@@ -96,6 +96,8 @@ in
     vial
     winboat
     zmk-studio
+    imv
+    mpv
 
     nodejs
     python3

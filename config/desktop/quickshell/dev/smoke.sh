@@ -22,6 +22,7 @@ allowed='prefs\.json|theme\.json|Could not load icon|portal|xdg-desktop|Failed t
 source "$state/env"
 trap '[ -n "${qspid:-}" ] && kill "$qspid" 2>/dev/null; "$here/headless.sh" stop >/dev/null' EXIT
 
+export QS_PREFS="$state/prefs.json"
 export QT_QUICK_BACKEND=software QS_DRYRUN=1 QS_WAYFIRE_SCRIPTS="$(dirname "$qs")/compositor"
 [ -f "$HOME/.config/quickshell/theme.json" ] && export QS_THEME="$HOME/.config/quickshell/theme.json"
 cd /tmp
@@ -45,6 +46,7 @@ for g in $pages; do
   shot "page-$g"; ipc settings close >/dev/null; sleep 0.4
 done
 ipc start toggle >/dev/null; sleep 1.5; shot "start-menu"; ipc start toggle >/dev/null
+ipc resize toggle >/dev/null; sleep 1.5; shot "resize-mode"; ipc resize stop >/dev/null
 
 bad=$(grep -aE "WARN|ERROR" "$log" | grep -avE "$allowed" || true)
 if [ -n "$bad" ]; then echo "$bad"; fail=1; fi

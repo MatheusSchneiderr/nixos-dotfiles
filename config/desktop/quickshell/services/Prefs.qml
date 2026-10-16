@@ -25,7 +25,7 @@ Scope {
 
   FileView {
     id: file
-    path: Quickshell.statePath("prefs.json")
+    path: Quickshell.env("QS_PREFS") || (Quickshell.env("HOME") + "/.config/quickshell/prefs.json")
     atomicWrites: true
     onLoaded: {
       try {

@@ -5,6 +5,7 @@ import qs.services
 import qs.shell
 import qs.modules.lock
 import qs.modules.notifications
+import qs.modules.windows
 
 ShellRoot {
   IpcHandler {
@@ -50,6 +51,8 @@ ShellRoot {
   }
 
   LockScreen {}
+
+  ResizeMode {}
 
   NotificationToasts {}
 
