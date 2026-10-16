@@ -18,7 +18,7 @@ RowLayout {
 
   Clickable {
     visible: root.glyph !== ""
-    Layout.preferredWidth: Theme.iconSlot + Theme.spaceSm
+    Layout.preferredWidth: Theme.rowHeight
     Layout.preferredHeight: Theme.rowHeight
     onActivated: root.glyphClicked()
     Glyph { centered: true; text: root.glyph; color: root.glyphColor }
