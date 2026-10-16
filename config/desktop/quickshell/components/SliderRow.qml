@@ -5,7 +5,7 @@ import qs
 RowLayout {
   id: root
   property string glyph: ""
-  property color glyphColor: Theme.fg
+  property color glyphColor: Theme.iconBody
   property real value: 0
   property real maximum: 1.0
   property int steps: 0

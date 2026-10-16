@@ -21,6 +21,7 @@ Scope {
   property string keyboardVariant: ""
   property real fontScale: 1.0
   property bool loaded: false
+  property bool migrated: false
 
   readonly property string timeFormat: (clock24h ? "HH:mm" : "h:mm") + (showSeconds ? ":ss" : "") + (clock24h ? "" : " AP")
 
@@ -45,6 +46,35 @@ Scope {
   onKeyboardLayoutChanged: save()
   onKeyboardVariantChanged: save()
 
+  // Color picks from before the token split: each old id fed several new tokens
+  readonly property var legacyColors: ({
+    fg: ["textBody", "textInput", "iconBody", "knob"],
+    muted: ["textHint", "iconDim", "lineDivider"],
+    accent: ["textSelected", "iconActive", "fillHighlight", "lineFocus"],
+    bg: ["fillWindow", "textOnHighlight", "knobActive"],
+    surface: ["fillCard"],
+    hover: ["fillHover"],
+    bright: ["textTitle", "fillMarker"],
+    danger: ["textError", "iconAlert", "fillDanger"],
+    warning: ["textWarning", "fillWarning"],
+    success: ["textSuccess"],
+    titleActive: ["titlebarActive"],
+    titleInactive: ["titlebarInactive"],
+    titleText: ["titlebarText"]
+  })
+
+  function migrateColors(map) {
+    const out = {}
+    let changed = false
+    for (const key in map) {
+      if (legacyColors[key]) {
+        changed = true
+        for (const id of legacyColors[key]) if (!(id in map)) out[id] = map[key]
+      } else out[key] = map[key]
+    }
+    return { colors: out, changed: changed }
+  }
+
   function setColor(id, slot) {
     const next = Object.assign({}, colors)
     if (slot) next[id] = slot; else delete next[id]
@@ -65,7 +95,11 @@ Scope {
         if (data.wallpaper !== undefined) root.wallpaper = data.wallpaper
         if (data.wallpaperFit) root.wallpaperFit = data.wallpaperFit
         if (data.wallpaperDir) root.wallpaperDir = data.wallpaperDir
-        if (data.colors && typeof data.colors === "object") root.colors = data.colors
+        if (data.colors && typeof data.colors === "object") {
+          const migrated = root.migrateColors(data.colors)
+          root.colors = migrated.colors
+          if (migrated.changed) root.migrated = true
+        }
         if (typeof data.fontFamily === "string") root.fontFamily = data.fontFamily
         if (data.fontScale > 0) root.fontScale = data.fontScale
         if (data.screenshotDir) root.screenshotDir = data.screenshotDir
@@ -75,6 +109,7 @@ Scope {
         if (typeof data.keyboardVariant === "string") root.keyboardVariant = data.keyboardVariant
       } catch (e) {}
       root.loaded = true
+      if (root.migrated) root.save()
     }
     onLoadFailed: root.loaded = true
   }

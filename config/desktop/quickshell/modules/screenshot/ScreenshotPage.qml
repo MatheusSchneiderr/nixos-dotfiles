@@ -32,7 +32,7 @@ SettingsPage {
 
   Label {
     text: "Print captures an area, Super+Print the whole screen. Files are named Screenshot_date-time.png."
-    color: Theme.muted
+    color: Theme.textHint
     wrapMode: Text.Wrap
     Layout.fillWidth: true
   }

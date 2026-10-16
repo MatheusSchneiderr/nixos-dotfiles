@@ -60,19 +60,33 @@ Singleton {
   ]
 
   readonly property var classes: [
-    { id: "bg", group: "Backgrounds", label: "Window background", hint: "Panel, popups, windows", slot: "base00" },
-    { id: "surface", group: "Backgrounds", label: "Panels, fields, buttons", hint: "Cards, inputs and buttons", slot: "base01" },
-    { id: "hover", group: "Backgrounds", label: "Hover and selection", hint: "Highlighted rows and pressed buttons", slot: "base02" },
-    { id: "fg", group: "Text", label: "Text", hint: "Normal text and icons", slot: "base05" },
-    { id: "bright", group: "Text", label: "Titles", hint: "Headings and emphasis", slot: "base07" },
-    { id: "muted", group: "Text", label: "Hints", hint: "Secondary and disabled text", slot: "base03" },
-    { id: "accent", group: "Accent", label: "Accent", hint: "Focus, selected items, sliders", slot: "base0D" },
-    { id: "danger", group: "Status", label: "Danger", hint: "Errors and destructive actions", slot: "base08" },
-    { id: "warning", group: "Status", label: "Warning", hint: "Cautions", slot: "base0A" },
-    { id: "success", group: "Status", label: "Success", hint: "Confirmations", slot: "base0B" },
-    { id: "titleActive", group: "Window title bars", label: "Active title bar", hint: "Focused window", slot: "base01" },
-    { id: "titleInactive", group: "Window title bars", label: "Inactive title bar", hint: "Unfocused windows", slot: "base00" },
-    { id: "titleText", group: "Window title bars", label: "Title text", hint: "Text on title bars", slot: "base05" }
+    { id: "textBody", group: "Text", label: "Text", hint: "Normal text", slot: "base05" },
+    { id: "textTitle", group: "Text", label: "Titles", hint: "Titles and big clocks", slot: "base07" },
+    { id: "textHint", group: "Text", label: "Hints", hint: "Hints, section headers, placeholders, disabled text", slot: "base03" },
+    { id: "textInput", group: "Text", label: "Typed text", hint: "What you type in a field", slot: "base05" },
+    { id: "textSelected", group: "Text", label: "Selected text", hint: "Selected or connected, active bar text", slot: "base0D" },
+    { id: "textOnHighlight", group: "Text", label: "Text on highlight", hint: "Text on the main button and on today in the calendar", slot: "base00" },
+    { id: "textError", group: "Text", label: "Error text", hint: "Errors and destructive actions", slot: "base08" },
+    { id: "textWarning", group: "Text", label: "Warning text", hint: "Cautions", slot: "base0A" },
+    { id: "textSuccess", group: "Text", label: "Success text", hint: "Confirmations", slot: "base0B" },
+    { id: "iconBody", group: "Icons", label: "Icons", hint: "Normal icons and bar icons", slot: "base05" },
+    { id: "iconActive", group: "Icons", label: "Active icons", hint: "Selected, connected, hovered or open, icons in buttons", slot: "base0D" },
+    { id: "iconDim", group: "Icons", label: "Dim icons", hint: "Off or muted, dropdown arrow, notification close", slot: "base03" },
+    { id: "iconAlert", group: "Icons", label: "Alert icons", hint: "Low battery, muted audio, shut down", slot: "base08" },
+    { id: "fillWindow", group: "Fills", label: "Windows and bar", hint: "Bar, popups, menus, Settings, lock screen", slot: "base00" },
+    { id: "fillCard", group: "Fills", label: "Cards, fields, buttons", hint: "Cards, sidebar, text fields, dropdowns, buttons, toggle off", slot: "base01" },
+    { id: "fillHover", group: "Fills", label: "Hover and current row", hint: "Hovered or current row, hovered button, slider track", slot: "base02" },
+    { id: "fillHighlight", group: "Fills", label: "Highlight (main color)", hint: "Main button, slider fill, toggle on, notification stripe", slot: "base0D" },
+    { id: "fillMarker", group: "Fills", label: "Today and current", hint: "Today in the calendar, current workspace", slot: "base07" },
+    { id: "fillDanger", group: "Fills", label: "Danger", hint: "Delete button hover, critical notification stripe", slot: "base08" },
+    { id: "fillWarning", group: "Fills", label: "Warning", hint: "The warning bar stripe", slot: "base0A" },
+    { id: "lineDivider", group: "Lines and knobs", label: "Dividers and borders", hint: "Separators, borders, slider ticks, occupied workspace", slot: "base03" },
+    { id: "lineFocus", group: "Lines and knobs", label: "Focus line", hint: "Focused field underline, chosen wallpaper outline", slot: "base0D" },
+    { id: "knob", group: "Lines and knobs", label: "Knob", hint: "Slider and toggle knob", slot: "base05" },
+    { id: "knobActive", group: "Lines and knobs", label: "Knob when on", hint: "Toggle knob when on", slot: "base00" },
+    { id: "titlebarActive", group: "Window title bars", label: "Active title bar", hint: "Focused window", slot: "base01" },
+    { id: "titlebarInactive", group: "Window title bars", label: "Inactive title bar", hint: "Unfocused windows", slot: "base00" },
+    { id: "titlebarText", group: "Window title bars", label: "Title text", hint: "Text on title bars", slot: "base05" }
   ]
 
   function slotColor(id) { return palette[id] }
@@ -85,19 +99,33 @@ Singleton {
     return palette[slot]
   }
 
-  readonly property color bg: resolve("bg")
-  readonly property color surface: resolve("surface")
-  readonly property color hover: resolve("hover")
-  readonly property color fg: resolve("fg")
-  readonly property color bright: resolve("bright")
-  readonly property color muted: resolve("muted")
-  readonly property color accent: resolve("accent")
-  readonly property color danger: resolve("danger")
-  readonly property color warning: resolve("warning")
-  readonly property color success: resolve("success")
-  readonly property color titleActive: resolve("titleActive")
-  readonly property color titleInactive: resolve("titleInactive")
-  readonly property color titleText: resolve("titleText")
+  readonly property color textBody: resolve("textBody")
+  readonly property color textTitle: resolve("textTitle")
+  readonly property color textHint: resolve("textHint")
+  readonly property color textInput: resolve("textInput")
+  readonly property color textSelected: resolve("textSelected")
+  readonly property color textOnHighlight: resolve("textOnHighlight")
+  readonly property color textError: resolve("textError")
+  readonly property color textWarning: resolve("textWarning")
+  readonly property color textSuccess: resolve("textSuccess")
+  readonly property color iconBody: resolve("iconBody")
+  readonly property color iconActive: resolve("iconActive")
+  readonly property color iconDim: resolve("iconDim")
+  readonly property color iconAlert: resolve("iconAlert")
+  readonly property color fillWindow: resolve("fillWindow")
+  readonly property color fillCard: resolve("fillCard")
+  readonly property color fillHover: resolve("fillHover")
+  readonly property color fillHighlight: resolve("fillHighlight")
+  readonly property color fillMarker: resolve("fillMarker")
+  readonly property color fillDanger: resolve("fillDanger")
+  readonly property color fillWarning: resolve("fillWarning")
+  readonly property color lineDivider: resolve("lineDivider")
+  readonly property color lineFocus: resolve("lineFocus")
+  readonly property color knob: resolve("knob")
+  readonly property color knobActive: resolve("knobActive")
+  readonly property color titlebarActive: resolve("titlebarActive")
+  readonly property color titlebarInactive: resolve("titlebarInactive")
+  readonly property color titlebarText: resolve("titlebarText")
 
   // Typography
   readonly property string font: Prefs.fontFamily !== "" ? Prefs.fontFamily : palette.font

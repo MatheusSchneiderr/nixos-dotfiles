@@ -8,7 +8,7 @@ Text {
   // centering by alignment is a few pixels off. With centered: true the glyph is placed by position instead.
   property bool centered: false
 
-  color: Theme.fg
+  color: Theme.iconBody
   font.family: Theme.font
   font.pixelSize: Theme.iconNormal
   horizontalAlignment: centered ? Text.AlignLeft : Text.AlignHCenter

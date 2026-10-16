@@ -5,11 +5,11 @@ import qs
 Rectangle {
   id: root
   property alias text: label.text
-  property color tint: Theme.warning
+  property color tint: Theme.fillWarning
 
   Layout.fillWidth: true
   implicitHeight: label.implicitHeight + Theme.spaceMd * 2
-  color: Theme.surface
+  color: Theme.fillCard
 
   Rectangle {
     anchors.left: parent.left

@@ -6,7 +6,7 @@ Label {
   property bool ok: false
 
   visible: text !== ""
-  color: ok ? Theme.success : Theme.danger
+  color: ok ? Theme.textSuccess : Theme.textError
   wrapMode: Text.Wrap
   Layout.fillWidth: true
 }

@@ -37,14 +37,14 @@ SettingsPage {
       label: "Internet access"
       Label {
         text: Nm.connectivity === "full" ? "Connected" : Nm.connectivity === "limited" ? "Limited (captive portal?)" : Nm.connectivity === "portal" ? "Sign-in required" : Nm.connectivity === "none" ? "No internet" : Nm.connectivity
-        color: Nm.connectivity === "full" ? Theme.success : Nm.connectivity === "none" ? Theme.danger : Theme.warning
+        color: Nm.connectivity === "full" ? Theme.textSuccess : Nm.connectivity === "none" ? Theme.textError : Theme.textWarning
       }
     }
 
     DeviceSection {}
 
     SectionHeader { text: "WI-FI NETWORKS"; visible: Nm.wifiOn }
-    Label { visible: Nm.wifiOn && !Nm.scanned; text: "Scanning..."; color: Theme.muted }
+    Label { visible: Nm.wifiOn && !Nm.scanned; text: "Scanning..."; color: Theme.textHint }
     WifiList { visible: Nm.wifiOn; showForget: true; showBand: true }
     RowLayout {
       visible: Nm.wifiOn
@@ -65,7 +65,7 @@ SettingsPage {
     }
 
     SectionHeader { text: "SAVED CONNECTIONS" }
-    Label { visible: Nm.savedProfiles.length === 0; text: "None"; color: Theme.muted }
+    Label { visible: Nm.savedProfiles.length === 0; text: "None"; color: Theme.textHint }
     Repeater {
       model: Nm.savedProfiles
       delegate: ListRow {

@@ -81,7 +81,7 @@ SettingsPage {
     label: "Preview"
     Label {
       text: Qt.formatDateTime(tick.date, Prefs.timeFormat) + "    " + Qt.formatDateTime(tick.date, Prefs.dateFormat)
-      color: Theme.bright
+      color: Theme.textTitle
       font.pixelSize: Theme.fontLarge
     }
   }
@@ -101,7 +101,7 @@ SettingsPage {
     label: "Clock synchronized"
     Label {
       text: Regional.info["NTPSynchronized"] === "yes" ? "Yes" : "No"
-      color: Regional.info["NTPSynchronized"] === "yes" ? Theme.success : Theme.warning
+      color: Regional.info["NTPSynchronized"] === "yes" ? Theme.textSuccess : Theme.textWarning
     }
   }
   FormRow {
@@ -148,7 +148,7 @@ SettingsPage {
       Label {
         Layout.fillWidth: true
         text: "Temporary: lasts until you log out. To make it permanent, change i18n.defaultLocale in your system flake (configuration.nix). Open windows and programs started by key bindings keep the old language until restarted."
-        color: Theme.muted
+        color: Theme.textHint
         font.pixelSize: Theme.fontSmall
         wrapMode: Text.Wrap
       }

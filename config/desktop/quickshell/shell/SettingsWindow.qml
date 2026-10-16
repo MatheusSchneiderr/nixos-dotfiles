@@ -7,7 +7,7 @@ import qs.components
 FloatingWindow {
   id: win
   title: "Settings"
-  color: Theme.bg
+  color: Theme.fillWindow
   implicitWidth: Theme.settingsWidth
   implicitHeight: Theme.settingsHeight
   minimumSize: Qt.size(760, 480)
@@ -49,7 +49,7 @@ FloatingWindow {
       anchors.top: parent.top
       anchors.bottom: parent.bottom
       width: Theme.sidebarWidth
-      color: Theme.surface
+      color: Theme.fillCard
 
       ColumnLayout {
         anchors.fill: parent
@@ -58,7 +58,7 @@ FloatingWindow {
 
         Label {
           text: "Settings"
-          color: Theme.bright
+          color: Theme.textTitle
           font.pixelSize: Theme.fontLarge
           font.bold: true
           Layout.leftMargin: Theme.spaceSm

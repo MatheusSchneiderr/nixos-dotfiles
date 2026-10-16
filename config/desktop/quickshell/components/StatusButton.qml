@@ -7,7 +7,9 @@ Item {
   id: btn
   property string glyph: ""
   property string label: ""
-  property color tint: Theme.fg
+  property bool dim: false
+  property bool alert: false
+  property bool lit: false
   property string popup: ""
   property bool active: popup !== "" && Ui.popup === popup
   signal clicked()
@@ -21,17 +23,18 @@ Item {
     id: content
     anchors.centerIn: parent
     spacing: Theme.spaceSm
-    Label {
+    Glyph {
       anchors.verticalCenter: parent.verticalCenter
       text: btn.glyph
-      color: (area.containsMouse || btn.active) ? Theme.accent : btn.tint
+      horizontalAlignment: Text.AlignLeft
+      color: (area.containsMouse || btn.active) ? Theme.iconActive : btn.alert ? Theme.iconAlert : btn.lit ? Theme.iconActive : btn.dim ? Theme.iconDim : Theme.iconBody
       font.pixelSize: Theme.iconNormal
     }
     Label {
       anchors.verticalCenter: parent.verticalCenter
       visible: btn.label !== ""
       text: btn.label
-      color: (area.containsMouse || btn.active) ? Theme.accent : btn.tint
+      color: (area.containsMouse || btn.active) ? Theme.textSelected : btn.alert ? Theme.textError : btn.lit ? Theme.textSelected : btn.dim ? Theme.textHint : Theme.textBody
       font.pixelSize: Theme.fontBody
     }
   }
