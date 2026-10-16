@@ -5,6 +5,7 @@ import qs.services
 import qs.shell
 import qs.modules.lock
 import qs.modules.notifications
+import qs.modules.screencast
 import qs.modules.windows
 
 ShellRoot {
@@ -53,6 +54,8 @@ ShellRoot {
   LockScreen {}
 
   ResizeMode {}
+
+  ScreencastPicker {}
 
   NotificationToasts {}
 

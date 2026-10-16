@@ -33,6 +33,7 @@ QtObject {
   readonly property string mail: "\uf0e0"
   readonly property string mic: "\uf130"
   readonly property string micOff: "\uf131"
+  readonly property string monitor: "\uf108"
   readonly property string moon: "\uf186"
   readonly property string mouse: String.fromCodePoint(0xf037d)
   readonly property string music: "\uf001"

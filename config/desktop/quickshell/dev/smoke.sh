@@ -47,6 +47,9 @@ for g in $pages; do
 done
 ipc start toggle >/dev/null; sleep 1.5; shot "start-menu"; ipc start toggle >/dev/null
 ipc resize toggle >/dev/null; sleep 1.5; shot "resize-mode"; ipc resize stop >/dev/null
+printf 'screen-a\nscreen-b\n' | QS_ARGS="-p $qs" "$qs/modules/screencast/portal-pick" > "$state/picked" 2>&1 &
+sleep 2; shot "screen-picker"; ipc picker cancel >/dev/null; wait $! 2>/dev/null
+[ -s "$state/picked" ] && { echo "FAIL screen picker returned text on cancel"; fail=1; }
 
 bad=$(grep -aE "WARN|ERROR" "$log" | grep -avE "$allowed" || true)
 if [ -n "$bad" ]; then echo "$bad"; fail=1; fi
