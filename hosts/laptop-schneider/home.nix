@@ -15,9 +15,9 @@ in
 {
   imports = [
     ../../config/bash
+    ../../config/desktop
     ../../config/dotnet-tools
     ../../config/foot
-    ../../config/kde
     ../../config/llama-cpp-sycl
     ../../config/nvim
     ../../config/opencode
@@ -26,7 +26,7 @@ in
     ../../config/vscode
   ];
 
-  # blesh, kde, nvim, llama-cpp-sycl, dotnet-tools: no separate enable line -
+  # blesh, nvim, llama-cpp-sycl, dotnet-tools: no separate enable line -
   # always applied when imported
 
   programs.bash.enable = true;

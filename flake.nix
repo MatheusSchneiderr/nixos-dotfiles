@@ -15,18 +15,13 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     aspire = {
       url = "github:microsoft/aspire";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, plasma-manager, aspire, ... }:
+  outputs = { self, nixpkgs, home-manager, stylix, aspire, ... }:
     let
       system = "x86_64-linux";
     in
@@ -43,7 +38,6 @@
               useUserPackages = true;
               users.schneider = import ./hosts/laptop-schneider/home.nix;
               backupFileExtension = "backup";
-              sharedModules = [ plasma-manager.homeModules.plasma-manager ];
               extraSpecialArgs = { inherit aspire; };
             };
           }

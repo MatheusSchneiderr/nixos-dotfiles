@@ -9,10 +9,6 @@ let
   # bright, jabuti, onedark-dark, phd, valua, woodland
   base16Theme = "onedark-dark";
   base16SchemePath = "${pkgs.base16-schemes}/share/themes/${base16Theme}.yaml";
-  sddmBreezeBackground = pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-    [General]
-    background=${backgroundImage}
-  '';
 in
 {
   imports = [
@@ -58,14 +54,20 @@ in
   };
   console.keyMap = "br-abnt2";
 
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    konsole
-    elisa
-    kate
-    khelpcenter
-  ];
+  services.greetd = {
+    enable = true;
+    settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd /run/current-system/sw/bin/wayfire";
+  };
+  security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services.swaylock = { };
+  services.gnome.gnome-keyring.enable = true;
+  security.polkit.enable = true;
+  programs.dconf.enable = true;
+  services.upower.enable = true;
+  programs.wayfire = {
+    enable = true;
+    plugins = [ pkgs.wayfirePlugins.wayfire-plugins-extra ];
+  };
 
   services.logind.settings.Login.HandlePowerKey = "ignore";
 
@@ -105,6 +107,12 @@ in
   # throttling / excess turbo, which indirectly saves power and cuts fan
   # noise. No conflict with power-profiles-daemon (different subsystem).
   services.thermald.enable = true;
+
+  powerManagement.powertop.enable = true;
+  powerManagement.powertop.postStart = ''
+    for f in /sys/bus/usb/devices/*/power/control; do echo on > "$f"; done
+    for i in $(${pkgs.iw}/bin/iw dev | ${pkgs.gawk}/bin/awk '/Interface/{print $2}'); do ${pkgs.iw}/bin/iw dev "$i" set power_save off; done
+  '';
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -193,7 +201,6 @@ in
     git
     usbutils
     pciutils
-    sddmBreezeBackground
     base16-schemes # only used at eval time (stylix.base16Scheme) - listed here so GC doesn't reap it
   ];
 
