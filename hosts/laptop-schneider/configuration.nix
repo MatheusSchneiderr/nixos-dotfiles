@@ -5,7 +5,6 @@
 { config, pkgs, lib, ... }:
 
 let
-  backgroundImage = ./assets/golden-larch-slope.jpg;
   # bright, jabuti, onedark-dark, phd, valua, woodland
   base16Theme = "onedark-dark";
   base16SchemePath = "${pkgs.base16-schemes}/share/themes/${base16Theme}.yaml";
@@ -73,7 +72,6 @@ in
 
   stylix = {
     enable = true;
-    image = backgroundImage;
     base16Scheme = base16SchemePath;
     polarity = "dark";
     fonts = {
