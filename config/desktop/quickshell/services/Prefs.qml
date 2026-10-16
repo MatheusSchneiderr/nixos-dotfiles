@@ -27,7 +27,7 @@ Scope {
 
   function save() {
     if (!loaded) return
-    file.setText(JSON.stringify({ clock24h: clock24h, showSeconds: showSeconds, dateFormat: dateFormat, dnd: dnd, wallpaper: wallpaper, wallpaperFit: wallpaperFit, wallpaperDir: wallpaperDir, colors: colors, fontFamily: fontFamily, fontScale: fontScale, keyboardLayout: keyboardLayout, keyboardVariant: keyboardVariant, screenshotDir: screenshotDir, screenshotCopy: screenshotCopy, screenshotEdit: screenshotEdit }, null, 2))
+    file.setText(JSON.stringify({ clock24h: clock24h, showSeconds: showSeconds, dateFormat: dateFormat, dnd: dnd, wallpaper: wallpaper, wallpaperFit: wallpaperFit, wallpaperDir: wallpaperDir, colors: colors, fontFamily: fontFamily, fontScale: fontScale, keyboardLayout: keyboardLayout, keyboardVariant: keyboardVariant, screenshotDir: screenshotDir, screenshotCopy: screenshotCopy, screenshotEdit: screenshotEdit, colorsVersion: colorsVersion }, null, 2))
   }
 
   onClock24hChanged: save()
@@ -75,6 +75,20 @@ Scope {
     return { colors: out, changed: changed }
   }
 
+  // Version 2 swapped fillHighlight and fillMarker names (the main color is now fillPrimary) and split textOnHighlight
+  readonly property int colorsVersion: 2
+
+  function renameV2(map) {
+    const out = {}
+    for (const key in map) {
+      if (key === "fillHighlight") out.fillPrimary = map[key]
+      else if (key === "fillMarker") out.fillHighlight = map[key]
+      else if (key === "textOnHighlight") { out.textPrimary = map[key]; out.textHighlight = map[key] }
+      else out[key] = map[key]
+    }
+    return out
+  }
+
   function setColor(id, slot) {
     const next = Object.assign({}, colors)
     if (slot) next[id] = slot; else delete next[id]
@@ -97,8 +111,11 @@ Scope {
         if (data.wallpaperDir) root.wallpaperDir = data.wallpaperDir
         if (data.colors && typeof data.colors === "object") {
           const migrated = root.migrateColors(data.colors)
-          root.colors = migrated.colors
-          if (migrated.changed) root.migrated = true
+          let picks = migrated.colors
+          let changed = migrated.changed
+          if ((data.colorsVersion || 0) < root.colorsVersion) { picks = root.renameV2(picks); changed = true }
+          root.colors = picks
+          if (changed) root.migrated = true
         }
         if (typeof data.fontFamily === "string") root.fontFamily = data.fontFamily
         if (data.fontScale > 0) root.fontScale = data.fontScale

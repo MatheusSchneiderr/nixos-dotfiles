@@ -50,7 +50,7 @@ Item {
         readonly property int cy: Math.floor(index / root.columns)
         width: root.cellWidth
         height: root.cellHeight
-        color: (cx === root.currentX && cy === root.currentY) ? Theme.fillMarker
+        color: (cx === root.currentX && cy === root.currentY) ? Theme.fillHighlight
           : (cellArea.containsMouse ? Theme.fillHover : (root.occupied(cx, cy) ? Theme.lineDivider : Theme.fillCard))
         MouseArea {
           id: cellArea

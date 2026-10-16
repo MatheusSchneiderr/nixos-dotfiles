@@ -14,7 +14,7 @@ Rectangle {
   signal dismissed()
 
   readonly property color tint: notification.urgency === NotificationUrgency.Critical ? Theme.fillDanger
-    : notification.urgency === NotificationUrgency.Low ? Theme.lineDivider : Theme.fillHighlight
+    : notification.urgency === NotificationUrgency.Low ? Theme.lineDivider : Theme.fillPrimary
   readonly property string picture: notification.image !== "" ? notification.image
     : notification.appIcon !== "" ? Quickshell.iconPath(notification.appIcon, "dialog-information") : ""
 

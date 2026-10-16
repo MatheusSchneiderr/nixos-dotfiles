@@ -13,7 +13,7 @@ Clickable {
 
   Rectangle {
     anchors.fill: parent
-    color: root.checked ? Theme.fillHighlight : Theme.fillCard
+    color: root.checked ? Theme.fillPrimary : Theme.fillCard
     Rectangle {
       width: parent.height - 8
       height: width
@@ -23,7 +23,7 @@ Clickable {
     }
     Rectangle {
       anchors.fill: parent
-      color: Theme.fillMarker
+      color: Theme.fillHighlight
       opacity: root.highlighted ? 0.12 : 0
     }
   }

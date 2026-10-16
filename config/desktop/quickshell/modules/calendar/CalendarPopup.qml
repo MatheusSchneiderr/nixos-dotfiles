@@ -116,12 +116,12 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredWidth: 1
         Layout.preferredHeight: Theme.rowHeight
-        color: isToday ? Theme.fillMarker : "transparent"
+        color: isToday ? Theme.fillHighlight : "transparent"
 
         Label {
           anchors.centerIn: parent
           text: inMonth ? day : (day < 1 ? root.previousLength + day : day - root.monthLength)
-          color: isToday ? Theme.textOnHighlight : (inMonth ? Theme.textBody : Theme.textHint)
+          color: isToday ? Theme.textHighlight : (inMonth ? Theme.textBody : Theme.textHint)
           font.bold: isToday
         }
       }

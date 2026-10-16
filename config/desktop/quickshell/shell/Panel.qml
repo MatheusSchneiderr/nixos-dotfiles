@@ -107,7 +107,7 @@ PanelWindow {
     Rectangle {
       Layout.fillHeight: true
       Layout.preferredWidth: Theme.showDesktopWidth
-      color: showArea.containsMouse ? Theme.fillHighlight : Theme.fillCard
+      color: showArea.containsMouse ? Theme.fillPrimary : Theme.fillCard
       MouseArea {
         id: showArea
         anchors.fill: parent

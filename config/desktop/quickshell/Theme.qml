@@ -65,7 +65,8 @@ Singleton {
     { id: "textHint", group: "Text", label: "Hints", hint: "Hints, section headers, placeholders, disabled text", slot: "base03" },
     { id: "textInput", group: "Text", label: "Typed text", hint: "What you type in a field", slot: "base05" },
     { id: "textSelected", group: "Text", label: "Selected text", hint: "Selected or connected, active bar text", slot: "base0D" },
-    { id: "textOnHighlight", group: "Text", label: "Text on highlight", hint: "Text on the main button and on today in the calendar", slot: "base00" },
+    { id: "textPrimary", group: "Text", label: "Text on main color", hint: "Text on the main button", slot: "base00" },
+    { id: "textHighlight", group: "Text", label: "Text on highlight", hint: "Today's number in the calendar", slot: "base00" },
     { id: "textError", group: "Text", label: "Error text", hint: "Errors and destructive actions", slot: "base08" },
     { id: "textWarning", group: "Text", label: "Warning text", hint: "Cautions", slot: "base0A" },
     { id: "textSuccess", group: "Text", label: "Success text", hint: "Confirmations", slot: "base0B" },
@@ -76,8 +77,8 @@ Singleton {
     { id: "fillWindow", group: "Fills", label: "Windows and bar", hint: "Bar, popups, menus, Settings, lock screen", slot: "base00" },
     { id: "fillCard", group: "Fills", label: "Cards, fields, buttons", hint: "Cards, sidebar, text fields, dropdowns, buttons, toggle off", slot: "base01" },
     { id: "fillHover", group: "Fills", label: "Hover and current row", hint: "Hovered or current row, hovered button, slider track", slot: "base02" },
-    { id: "fillHighlight", group: "Fills", label: "Highlight (main color)", hint: "Main button, slider fill, toggle on, notification stripe", slot: "base0D" },
-    { id: "fillMarker", group: "Fills", label: "Today and current", hint: "Today in the calendar, current workspace", slot: "base07" },
+    { id: "fillPrimary", group: "Fills", label: "Main color", hint: "Main button, slider fill, toggle on, notification stripe", slot: "base0D" },
+    { id: "fillHighlight", group: "Fills", label: "Highlight", hint: "Today in the calendar, current workspace", slot: "base07" },
     { id: "fillDanger", group: "Fills", label: "Danger", hint: "Delete button hover, critical notification stripe", slot: "base08" },
     { id: "fillWarning", group: "Fills", label: "Warning", hint: "The warning bar stripe", slot: "base0A" },
     { id: "lineDivider", group: "Lines and knobs", label: "Dividers and borders", hint: "Separators, borders, slider ticks, occupied workspace", slot: "base03" },
@@ -104,7 +105,8 @@ Singleton {
   readonly property color textHint: resolve("textHint")
   readonly property color textInput: resolve("textInput")
   readonly property color textSelected: resolve("textSelected")
-  readonly property color textOnHighlight: resolve("textOnHighlight")
+  readonly property color textPrimary: resolve("textPrimary")
+  readonly property color textHighlight: resolve("textHighlight")
   readonly property color textError: resolve("textError")
   readonly property color textWarning: resolve("textWarning")
   readonly property color textSuccess: resolve("textSuccess")
@@ -115,8 +117,8 @@ Singleton {
   readonly property color fillWindow: resolve("fillWindow")
   readonly property color fillCard: resolve("fillCard")
   readonly property color fillHover: resolve("fillHover")
+  readonly property color fillPrimary: resolve("fillPrimary")
   readonly property color fillHighlight: resolve("fillHighlight")
-  readonly property color fillMarker: resolve("fillMarker")
   readonly property color fillDanger: resolve("fillDanger")
   readonly property color fillWarning: resolve("fillWarning")
   readonly property color lineDivider: resolve("lineDivider")
