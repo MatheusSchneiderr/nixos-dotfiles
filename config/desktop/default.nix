@@ -27,6 +27,7 @@ in
     (lua5_4.withPackages (ps: [ ps.luasocket ps.cjson ]))
     papirus-icon-theme
     thunar
+    tumbler
     brightnessctl
     networkmanagerapplet
     grim
