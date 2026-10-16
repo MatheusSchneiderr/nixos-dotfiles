@@ -9,6 +9,7 @@ ColumnLayout {
   id: root
   signal launched()
   signal settingsRequested()
+  property bool showSettings: true
 
   spacing: Theme.spaceMd
 
@@ -35,6 +36,7 @@ ColumnLayout {
     }
 
     Clickable {
+      visible: root.showSettings
       Layout.preferredWidth: Theme.buttonHeight
       Layout.preferredHeight: Theme.buttonHeight
       idleColor: Theme.surface

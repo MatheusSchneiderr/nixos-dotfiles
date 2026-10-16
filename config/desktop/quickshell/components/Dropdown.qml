@@ -15,6 +15,11 @@ Item {
     return value === undefined ? "" : String(value)
   }
 
+  readonly property var currentSwatch: {
+    for (let i = 0; i < options.length; i++) if (options[i].value === value) return options[i].swatch
+    return undefined
+  }
+
   implicitWidth: Theme.fieldMd
   implicitHeight: Theme.inputHeight
   Layout.preferredWidth: Theme.fieldMd
@@ -48,9 +53,21 @@ Item {
     anchors.fill: parent
     idleColor: Theme.surface
     onActivated: root.expanded = !root.expanded
-    Label {
+    Rectangle {
+      id: headSwatch
+      visible: root.currentSwatch !== undefined
       anchors.verticalCenter: parent.verticalCenter
       anchors.left: parent.left
+      anchors.leftMargin: Theme.spaceMd
+      width: Theme.swatchSize
+      height: Theme.swatchSize
+      color: root.currentSwatch !== undefined ? root.currentSwatch : "transparent"
+      border.width: 1
+      border.color: Theme.muted
+    }
+    Label {
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: headSwatch.visible ? headSwatch.right : parent.left
       anchors.leftMargin: Theme.spaceMd
       anchors.right: arrow.left
       text: root.currentLabel
@@ -97,9 +114,21 @@ Item {
           Keys.onEscapePressed: root.expanded = false
           Keys.onDownPressed: { const n = nextItemInFocusChain(true); if (n) n.forceActiveFocus() }
           Keys.onUpPressed: { const n = nextItemInFocusChain(false); if (n) n.forceActiveFocus() }
-          Label {
+          Rectangle {
+            id: rowSwatch
+            visible: modelData.swatch !== undefined
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
+            anchors.leftMargin: Theme.spaceMd
+            width: Theme.swatchSize
+            height: Theme.swatchSize
+            color: modelData.swatch !== undefined ? modelData.swatch : "transparent"
+            border.width: 1
+            border.color: Theme.muted
+          }
+          Label {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: rowSwatch.visible ? rowSwatch.right : parent.left
             anchors.leftMargin: Theme.spaceMd
             text: modelData.label
             color: modelData.value === root.value ? Theme.accent : Theme.fg

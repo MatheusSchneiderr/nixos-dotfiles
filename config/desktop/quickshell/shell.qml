@@ -3,9 +3,11 @@ import Quickshell
 import Quickshell.Io
 import qs.services
 import qs.shell
+import qs.modules.launcher
 import qs.modules.lock
 import qs.modules.notifications
 import qs.modules.screencast
+import qs.modules.appearance
 import qs.modules.windows
 
 ShellRoot {
@@ -50,6 +52,12 @@ ShellRoot {
       onCloseRequested: Ui.settingsOpen = false
     }
   }
+
+  Launcher {}
+
+  Wallpaper {}
+
+  WayfireTheme {}
 
   LockScreen {}
 

@@ -22,20 +22,6 @@ in
     };
   };
 
-  systemd.user.services.swaybg = {
-    Unit = {
-      Description = "Wallpaper";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} -m fill";
-      Restart = "on-failure";
-      RestartSec = 1;
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-  };
-
   home.packages = with pkgs; [
     quickshell
     (lua5_4.withPackages (ps: [ ps.luasocket ps.cjson ]))
