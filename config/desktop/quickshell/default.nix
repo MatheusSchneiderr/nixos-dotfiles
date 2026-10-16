@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   addTheme = import ../../theme.nix { inherit config; };
   home = config.home.homeDirectory;
@@ -19,5 +19,11 @@ in
     [Service]
     ExecStart=
     ExecStart=${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr --config=%h/.config/xdg-desktop-portal-wlr/config
+  '';
+
+  # After a rebuild links the new theme.json, tell the running panel to re-read it (no-op without a session).
+  home.activation.reloadQuickshellTheme = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    $DRY_RUN_CMD env XDG_RUNTIME_DIR="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}" \
+      ${pkgs.quickshell}/bin/quickshell ipc --any-display -c panel call theme reload >/dev/null 2>&1 || true
   '';
 }

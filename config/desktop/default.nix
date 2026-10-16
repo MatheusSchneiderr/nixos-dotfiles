@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 let
-  addTheme = import ../theme.nix { inherit config; };
   lock = "${pkgs.quickshell}/bin/quickshell -c panel ipc call lock lock";
 in
 {
@@ -37,16 +36,10 @@ in
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
-  xdg.configFile."zathura/zathurarc".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-dotfiles/config/desktop/zathurarc";
-  xdg.configFile."zathura/theme".text =
-    addTheme (builtins.readFile ./zathura-theme);
-
   home.packages = with pkgs; [
     quickshell
     (lua5_4.withPackages (ps: [ ps.luasocket ps.cjson ]))
     papirus-icon-theme
-    zathura
     thunar
     brightnessctl
     networkmanagerapplet

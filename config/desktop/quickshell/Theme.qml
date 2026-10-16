@@ -8,7 +8,15 @@ Singleton {
 
   // Colors and font come from theme.json (generated from the Stylix theme by config/theme.nix).
   // The defaults below only show for the few ms before the file is read.
+  // A rebuild replaces the theme.json symlink, which a file watcher does not notice, so the rebuild
+  // (home.activation in default.nix) calls `quickshell ipc call theme reload` to re-read it.
+  IpcHandler {
+    target: "theme"
+    function reload(): void { themeFile.reload() }
+  }
+
   FileView {
+    id: themeFile
     blockLoading: true
     path: Quickshell.env("QS_THEME") || (Quickshell.env("HOME") + "/.config/quickshell/theme.json")
     JsonAdapter {
