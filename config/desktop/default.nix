@@ -29,7 +29,11 @@ in
       PartOf = [ "graphical-session.target" ];
       After = [ "graphical-session.target" ];
     };
-    Service.ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} -m fill";
+    Service = {
+      ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} -m fill";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
