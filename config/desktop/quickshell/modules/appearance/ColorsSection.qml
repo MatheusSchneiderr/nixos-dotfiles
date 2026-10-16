@@ -94,6 +94,7 @@ ColumnLayout {
         model: group.expanded ? modelData.items : []
         delegate: FormRow {
           required property var modelData
+          Layout.leftMargin: Theme.spaceLg * 2
           label: modelData.label
           hint: modelData.hint
           Dropdown {
