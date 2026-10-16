@@ -132,7 +132,7 @@ Item {
               anchors.left: rowSwatch.visible ? rowSwatch.right : parent.left
               anchors.leftMargin: Theme.spaceMd
               text: modelData.label
-              color: modelData.value === root.value ? Theme.textSelected : Theme.textBody
+              color: modelData.value === root.value ? Theme.selected : Theme.textBody
             }
           }
         }

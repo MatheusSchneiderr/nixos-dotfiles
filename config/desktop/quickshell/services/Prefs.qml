@@ -46,8 +46,11 @@ Scope {
   onKeyboardLayoutChanged: save()
   onKeyboardVariantChanged: save()
 
-  // Color picks from before the token split: each old id fed several new tokens
-  readonly property var legacyColors: ({
+  // Saved color picks carry a version. Each step upgrades picks written by an older one.
+  readonly property int colorsVersion: 4
+
+  // Before the token split (files without a version): each old id fed several tokens
+  readonly property var splitIds: ({
     fg: ["textBody", "textInput", "iconBody", "knob"],
     muted: ["textHint", "iconDim", "lineDivider"],
     accent: ["textSelected", "iconActive", "fillHighlight", "lineFocus"],
@@ -63,37 +66,54 @@ Scope {
     titleText: ["titlebarText"]
   })
 
-  function migrateColors(map) {
-    const out = {}
-    let changed = false
-    for (const key in map) {
-      if (legacyColors[key]) {
-        changed = true
-        for (const id of legacyColors[key]) if (!(id in map)) out[id] = map[key]
-      } else out[key] = map[key]
+  // Version 4: one token for selected, danger, warning and success; the knobs follow the text colors
+  readonly property var mergedIds: ({
+    selected: ["textSelected", "iconActive", "lineFocus"],
+    danger: ["textError", "iconAlert", "fillDanger"],
+    warning: ["textWarning", "fillWarning"],
+    success: ["textSuccess"]
+  })
+
+  function migrateColors(map, from) {
+    let picks = map
+    if (from < 1 && Object.keys(picks).some(k => splitIds[k])) {
+      const out = {}
+      for (const key in picks) {
+        if (splitIds[key]) { for (const id of splitIds[key]) if (!(id in picks)) out[id] = picks[key] }
+        else out[key] = picks[key]
+      }
+      picks = out
     }
-    return { colors: out, changed: changed }
-  }
-
-  // Version 3 removed fillHighlight and textHighlight: today and the current workspace use the main color
-  // Version 2 swapped fillHighlight and fillMarker names (the main color is now fillPrimary) and split textOnHighlight
-  readonly property int colorsVersion: 3
-
-  function renameV2(map) {
-    const out = {}
-    for (const key in map) {
-      if (key === "fillHighlight") out.fillPrimary = map[key]
-      else if (key === "fillMarker") out.fillHighlight = map[key]
-      else if (key === "textOnHighlight") { out.textPrimary = map[key]; out.textHighlight = map[key] }
-      else out[key] = map[key]
+    if (from < 2) {
+      // fillHighlight became fillPrimary and fillMarker became fillHighlight; textOnHighlight was split
+      const out = {}
+      for (const key in picks) {
+        if (key === "fillHighlight") out.fillPrimary = picks[key]
+        else if (key === "fillMarker") out.fillHighlight = picks[key]
+        else if (key === "textOnHighlight") { out.textPrimary = picks[key]; out.textHighlight = picks[key] }
+        else out[key] = picks[key]
+      }
+      picks = out
     }
-    return out
-  }
-
-  function dropV3(map) {
-    const out = {}
-    for (const key in map) if (key !== "fillHighlight" && key !== "textHighlight") out[key] = map[key]
-    return out
+    if (from < 3) {
+      // fillHighlight and textHighlight were removed
+      const out = {}
+      for (const key in picks) if (key !== "fillHighlight" && key !== "textHighlight") out[key] = picks[key]
+      picks = out
+    }
+    if (from < 4) {
+      const out = {}
+      const taken = {}
+      for (const target in mergedIds) {
+        for (const id of mergedIds[target]) {
+          taken[id] = true
+          if (out[target] === undefined && picks[id] !== undefined) out[target] = picks[id]
+        }
+      }
+      for (const key in picks) if (!taken[key] && key !== "knob" && key !== "knobActive") out[key] = picks[key]
+      picks = out
+    }
+    return picks
   }
 
   function setColor(id, slot) {
@@ -117,15 +137,10 @@ Scope {
         if (data.wallpaperFit) root.wallpaperFit = data.wallpaperFit
         if (data.wallpaperDir) root.wallpaperDir = data.wallpaperDir
         if (data.colors && typeof data.colors === "object") {
-          const migrated = root.migrateColors(data.colors)
-          let picks = migrated.colors
-          let changed = migrated.changed
           const from = data.colorsVersion || 0
-          if (from < 2) picks = root.renameV2(picks)
-          if (from < 3) picks = root.dropV3(picks)
-          if (from < root.colorsVersion) changed = true
+          const picks = root.migrateColors(data.colors, from)
+          if (from < root.colorsVersion) root.migrated = true
           root.colors = picks
-          if (changed) root.migrated = true
         }
         if (typeof data.fontFamily === "string") root.fontFamily = data.fontFamily
         if (data.fontScale > 0) root.fontScale = data.fontScale

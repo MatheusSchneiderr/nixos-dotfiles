@@ -5,7 +5,7 @@ import qs
 Rectangle {
   id: root
   property alias text: label.text
-  property color tint: Theme.fillWarning
+  property color tint: Theme.warning
 
   Layout.fillWidth: true
   implicitHeight: label.implicitHeight + Theme.spaceMd * 2

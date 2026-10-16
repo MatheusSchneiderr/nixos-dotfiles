@@ -126,7 +126,7 @@ Scope {
             Layout.preferredWidth: -1
             horizontalAlignment: Text.AlignLeft
             text: Icons.user
-            color: Theme.iconActive
+            color: Theme.selected
             font.pixelSize: Theme.fontDisplay
           }
           Label {
@@ -159,7 +159,7 @@ Scope {
             Layout.preferredWidth: Theme.lockFieldWidth
             horizontalAlignment: Text.AlignHCenter
             text: root.message
-            color: Theme.textError
+            color: Theme.danger
             font.pixelSize: Theme.fontBody
             SequentialAnimation on x {
               id: shake
@@ -184,7 +184,7 @@ Scope {
           visible: UPower.displayDevice && UPower.displayDevice.isPresent
           Label {
             text: (UPower.displayDevice.state === UPowerDeviceState.Charging ? Icons.bolt + " " : Icons.batteryFull + " ") + Math.round(UPower.displayDevice.percentage * 100) + "%"
-            color: UPower.displayDevice.percentage < 0.15 ? Theme.textError : Theme.textBody
+            color: UPower.displayDevice.percentage < 0.15 ? Theme.danger : Theme.textBody
             font.pixelSize: Theme.fontBody
           }
         }

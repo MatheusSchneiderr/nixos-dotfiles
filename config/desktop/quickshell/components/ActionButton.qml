@@ -12,7 +12,7 @@ Clickable {
   implicitHeight: Theme.buttonHeight - 6
   opacity: enabled ? 1.0 : 0.45
   idleColor: primary ? Theme.fillPrimary : Theme.fillCard
-  hoverColor: danger ? Theme.fillDanger : primary ? Theme.fillPrimary : Theme.fillHover
+  hoverColor: danger ? Theme.danger : primary ? Theme.fillPrimary : Theme.fillHover
 
   Label {
     id: label

@@ -32,7 +32,7 @@ RowLayout {
         Glyph {
           Layout.alignment: Qt.AlignHCenter
           text: modelData.icon
-          color: modelData.id === "shutdown" ? Theme.iconAlert : Theme.iconActive
+          color: modelData.id === "shutdown" ? Theme.danger : Theme.selected
         }
         Label {
           Layout.alignment: Qt.AlignHCenter

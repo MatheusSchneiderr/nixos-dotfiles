@@ -34,7 +34,7 @@ ColumnLayout {
     spacing: Theme.spaceMd
     Label {
       text: Math.round((root.bat ? root.bat.percentage : 0) * 100) + "%"
-      color: (root.bat && root.bat.percentage < 0.15 && root.bat.state !== UPowerDeviceState.Charging) ? Theme.textError : Theme.textBody
+      color: (root.bat && root.bat.percentage < 0.15 && root.bat.state !== UPowerDeviceState.Charging) ? Theme.danger : Theme.textBody
       font.pixelSize: Theme.fontDisplay
       font.bold: true
     }

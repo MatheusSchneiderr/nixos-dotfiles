@@ -72,7 +72,7 @@ ColumnLayout {
       Label {
         anchors.centerIn: parent
         text: Qt.formatDate(new Date(root.year, root.month, 1), "MMMM yyyy")
-        color: root.onCurrentMonth ? Theme.textBody : Theme.textSelected
+        color: root.onCurrentMonth ? Theme.textBody : Theme.selected
         font.pixelSize: Theme.fontLarge
       }
     }
@@ -160,7 +160,7 @@ ColumnLayout {
       Layout.preferredHeight: Theme.buttonHeight
       idleColor: Theme.fillCard
       onActivated: Ui.openSettings("datetime")
-      Glyph { centered: true; text: Icons.gear; color: Theme.iconActive }
+      Glyph { centered: true; text: Icons.gear; color: Theme.selected }
     }
   }
 }

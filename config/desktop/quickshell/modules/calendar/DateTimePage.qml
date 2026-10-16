@@ -101,7 +101,7 @@ SettingsPage {
     label: "Clock synchronized"
     Label {
       text: Regional.info["NTPSynchronized"] === "yes" ? "Yes" : "No"
-      color: Regional.info["NTPSynchronized"] === "yes" ? Theme.textSuccess : Theme.textWarning
+      color: Regional.info["NTPSynchronized"] === "yes" ? Theme.success : Theme.warning
     }
   }
   FormRow {

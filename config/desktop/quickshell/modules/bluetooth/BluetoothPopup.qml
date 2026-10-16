@@ -36,12 +36,12 @@ ColumnLayout {
       anchors.leftMargin: Theme.spaceSm
       anchors.rightMargin: Theme.spaceSm
       spacing: Theme.spaceMd
-      Glyph { text: Bt.glyph(device.icon); color: device.connected ? Theme.iconActive : Theme.iconBody }
+      Glyph { text: Bt.glyph(device.icon); color: device.connected ? Theme.selected : Theme.iconBody }
       Label {
         Layout.fillWidth: true
         text: device.name
         elide: Text.ElideRight
-        color: device.connected ? Theme.textSelected : Theme.textBody
+        color: device.connected ? Theme.selected : Theme.textBody
       }
       Label {
         visible: device.connected && device.batteryAvailable
@@ -57,7 +57,7 @@ ColumnLayout {
       Glyph {
         visible: item.paired && item.highlighted
         text: Icons.trash
-        color: forgetArea.containsMouse ? Theme.iconAlert : Theme.iconDim
+        color: forgetArea.containsMouse ? Theme.danger : Theme.iconDim
         MouseArea { id: forgetArea; anchors.fill: parent; anchors.margins: -Theme.spaceSm; hoverEnabled: true; onClicked: device.forget() }
       }
     }

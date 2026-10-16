@@ -95,7 +95,7 @@ ColumnLayout {
           anchors.fill: parent
           color: "transparent"
           border.width: 2
-          border.color: Theme.lineFocus
+          border.color: Theme.selected
           visible: modelData === Prefs.wallpaper
         }
       }

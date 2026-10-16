@@ -13,7 +13,7 @@ Rectangle {
   property bool hovered: area.containsMouse || closeArea.containsMouse
   signal dismissed()
 
-  readonly property color tint: notification.urgency === NotificationUrgency.Critical ? Theme.fillDanger
+  readonly property color tint: notification.urgency === NotificationUrgency.Critical ? Theme.danger
     : notification.urgency === NotificationUrgency.Low ? Theme.lineDivider : Theme.fillPrimary
   readonly property string picture: notification.image !== "" ? notification.image
     : notification.appIcon !== "" ? Quickshell.iconPath(notification.appIcon, "dialog-information") : ""

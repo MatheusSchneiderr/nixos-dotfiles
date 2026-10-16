@@ -23,14 +23,14 @@ Item {
     Label {
       Layout.alignment: Qt.AlignRight
       text: Qt.formatDateTime(clock.date, Prefs.timeFormat)
-      color: root.lit ? Theme.textSelected : Theme.textBody
+      color: root.lit ? Theme.selected : Theme.textBody
       font.pixelSize: Theme.fontLarge
       font.bold: true
     }
     Label {
       Layout.alignment: Qt.AlignRight
       text: Qt.formatDateTime(clock.date, Prefs.dateFormat)
-      color: root.lit ? Theme.textSelected : Theme.textBody
+      color: root.lit ? Theme.selected : Theme.textBody
       font.pixelSize: Theme.fontSmall
     }
   }

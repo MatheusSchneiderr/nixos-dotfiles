@@ -27,14 +27,14 @@ Item {
       anchors.verticalCenter: parent.verticalCenter
       text: btn.glyph
       horizontalAlignment: Text.AlignLeft
-      color: (area.containsMouse || btn.active) ? Theme.iconActive : btn.alert ? Theme.iconAlert : btn.lit ? Theme.iconActive : btn.dim ? Theme.iconDim : Theme.iconBody
+      color: (area.containsMouse || btn.active) ? Theme.selected : btn.alert ? Theme.danger : btn.lit ? Theme.selected : btn.dim ? Theme.iconDim : Theme.iconBody
       font.pixelSize: Theme.iconNormal
     }
     Label {
       anchors.verticalCenter: parent.verticalCenter
       visible: btn.label !== ""
       text: btn.label
-      color: (area.containsMouse || btn.active) ? Theme.textSelected : btn.alert ? Theme.textError : btn.lit ? Theme.textSelected : btn.dim ? Theme.textHint : Theme.textBody
+      color: (area.containsMouse || btn.active) ? Theme.selected : btn.alert ? Theme.danger : btn.lit ? Theme.selected : btn.dim ? Theme.textHint : Theme.textBody
       font.pixelSize: Theme.fontBody
     }
   }

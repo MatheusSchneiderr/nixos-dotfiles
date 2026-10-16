@@ -19,7 +19,7 @@ Clickable {
       height: width
       y: 4
       x: root.checked ? parent.width - width - 4 : 4
-      color: root.checked ? Theme.knobActive : Theme.knob
+      color: root.checked ? Theme.textPrimary : Theme.textBody
     }
     Rectangle {
       anchors.fill: parent

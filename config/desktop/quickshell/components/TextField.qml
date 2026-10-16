@@ -48,7 +48,7 @@ Rectangle {
     anchors.right: parent.right
     anchors.bottom: parent.bottom
     height: 2
-    color: Theme.lineFocus
+    color: Theme.selected
     visible: input.activeFocus
   }
 }

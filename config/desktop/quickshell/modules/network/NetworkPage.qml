@@ -37,7 +37,7 @@ SettingsPage {
       label: "Internet access"
       Label {
         text: Nm.connectivity === "full" ? "Connected" : Nm.connectivity === "limited" ? "Limited (captive portal?)" : Nm.connectivity === "portal" ? "Sign-in required" : Nm.connectivity === "none" ? "No internet" : Nm.connectivity
-        color: Nm.connectivity === "full" ? Theme.textSuccess : Nm.connectivity === "none" ? Theme.textError : Theme.textWarning
+        color: Nm.connectivity === "full" ? Theme.success : Nm.connectivity === "none" ? Theme.danger : Theme.warning
       }
     }
 

@@ -20,7 +20,7 @@ Before you finish:
 4. Run commands with `Cmd`, not `Process`. Only the Pager streams, so it is the exception.
 5. A feature's popup and its Settings page share parts (`WifiList`, `DeviceRow`). Don't copy blocks between files.
 6. Imports: `import qs` (Theme, Icons), `import qs.components`, `import qs.services`. Only `shell/` and `shell.qml` import `qs.modules.*`.
-7. A color token belongs to one kind of element: `text*` on `Label`, `icon*` on `Glyph`, `fill*`/`line*`/`knob*` on shapes. `./check.sh` enforces it. Never reuse a token across kinds.
+7. A color token belongs to one kind of element: `text*` on `Label`, `icon*` on `Glyph`, `fill*`/`line*` on shapes (knobs use `textBody` and `textPrimary`). `selected`, `danger`, `warning` and `success` fit any kind. `./check.sh` enforces it.
 8. Gotchas: a file that imports `Quickshell.Io` can't use `Toggle`. Don't name a type `Region` or `State`, or an IPC function `show` or `call` (they clash with `quickshell ipc` subcommands). To center an icon in a button use `Glyph { centered: true }`, not `anchors.centerIn` (icons end up a few pixels off).
 
 ## Conventions

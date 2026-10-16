@@ -126,7 +126,7 @@ SettingsPage {
   Label {
     visible: !Audio.pactl
     text: "Profiles, balance and moving apps need pactl (package pulseaudio) which is not installed."
-    color: Theme.textWarning
+    color: Theme.warning
     wrapMode: Text.Wrap
     Layout.fillWidth: true
   }

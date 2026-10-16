@@ -40,7 +40,7 @@ PanelWindow {
       Glyph {
         centered: true
         text: Icons.nix
-        color: (startArea.containsMouse || Ui.menuOpen) ? Theme.iconActive : Theme.iconBody
+        color: (startArea.containsMouse || Ui.menuOpen) ? Theme.selected : Theme.iconBody
         font.pixelSize: Theme.iconLarge
       }
       MouseArea {

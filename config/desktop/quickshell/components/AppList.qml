@@ -41,7 +41,7 @@ ColumnLayout {
       Layout.preferredHeight: Theme.buttonHeight
       idleColor: Theme.fillCard
       onActivated: root.settingsRequested()
-      Glyph { centered: true; text: Icons.gear; color: Theme.iconActive }
+      Glyph { centered: true; text: Icons.gear; color: Theme.selected }
     }
   }
 

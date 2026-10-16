@@ -56,7 +56,7 @@ Item {
     radius: root.knob / 2
     x: (root.width - root.knob) * root.fraction
     anchors.verticalCenter: parent.verticalCenter
-    color: (area.pressed || area.containsMouse || root.activeFocus) ? Theme.fillPrimary : Theme.knob
+    color: (area.pressed || area.containsMouse || root.activeFocus) ? Theme.fillPrimary : Theme.textBody
   }
 
   MouseArea {

@@ -84,7 +84,7 @@ ColumnLayout {
         anchors.leftMargin: Theme.spaceSm
         anchors.rightMargin: Theme.spaceSm
         spacing: Theme.spaceMd
-        Glyph { text: modelData.image ? Icons.image : Icons.paste; color: Theme.iconActive }
+        Glyph { text: modelData.image ? Icons.image : Icons.paste; color: Theme.selected }
         Label { Layout.fillWidth: true; text: modelData.text; elide: Text.ElideRight }
       }
     }
