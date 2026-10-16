@@ -23,6 +23,7 @@ FloatingWindow {
     { id: "bluetooth", label: "Bluetooth", icon: Icons.bluetooth, file: "../modules/bluetooth/BluetoothPage.qml" },
     { id: "apps", label: "Default apps", icon: Icons.apps, file: "../modules/default-apps/DefaultAppsPage.qml" },
     { id: "appearance", label: "Appearance", icon: Icons.image, file: "../modules/appearance/AppearancePage.qml" },
+    { id: "screenshots", label: "Screenshots", icon: Icons.camera, file: "../modules/screenshot/ScreenshotPage.qml" },
     { id: "datetime", label: "Date & time", icon: Icons.clock, file: "../modules/calendar/DateTimePage.qml" },
     { id: "printers", label: "Printers", icon: Icons.printer, file: "../modules/printers/PrintersPage.qml" }
   ]

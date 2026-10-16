@@ -14,6 +14,9 @@ Scope {
   property string wallpaperDir: Quickshell.env("HOME") + "/Pictures"
   property var colors: ({})
   property string fontFamily: ""
+  property string screenshotDir: Quickshell.env("HOME") + "/Pictures/Screenshots"
+  property bool screenshotCopy: true
+  property bool screenshotEdit: true
   property string keyboardLayout: ""
   property string keyboardVariant: ""
   property real fontScale: 1.0
@@ -23,7 +26,7 @@ Scope {
 
   function save() {
     if (!loaded) return
-    file.setText(JSON.stringify({ clock24h: clock24h, showSeconds: showSeconds, dateFormat: dateFormat, dnd: dnd, wallpaper: wallpaper, wallpaperFit: wallpaperFit, wallpaperDir: wallpaperDir, colors: colors, fontFamily: fontFamily, fontScale: fontScale, keyboardLayout: keyboardLayout, keyboardVariant: keyboardVariant }, null, 2))
+    file.setText(JSON.stringify({ clock24h: clock24h, showSeconds: showSeconds, dateFormat: dateFormat, dnd: dnd, wallpaper: wallpaper, wallpaperFit: wallpaperFit, wallpaperDir: wallpaperDir, colors: colors, fontFamily: fontFamily, fontScale: fontScale, keyboardLayout: keyboardLayout, keyboardVariant: keyboardVariant, screenshotDir: screenshotDir, screenshotCopy: screenshotCopy, screenshotEdit: screenshotEdit }, null, 2))
   }
 
   onClock24hChanged: save()
@@ -36,6 +39,9 @@ Scope {
   onColorsChanged: save()
   onFontFamilyChanged: save()
   onFontScaleChanged: save()
+  onScreenshotDirChanged: save()
+  onScreenshotCopyChanged: save()
+  onScreenshotEditChanged: save()
   onKeyboardLayoutChanged: save()
   onKeyboardVariantChanged: save()
 
@@ -62,6 +68,9 @@ Scope {
         if (data.colors && typeof data.colors === "object") root.colors = data.colors
         if (typeof data.fontFamily === "string") root.fontFamily = data.fontFamily
         if (data.fontScale > 0) root.fontScale = data.fontScale
+        if (data.screenshotDir) root.screenshotDir = data.screenshotDir
+        if (data.screenshotCopy !== undefined) root.screenshotCopy = data.screenshotCopy
+        if (data.screenshotEdit !== undefined) root.screenshotEdit = data.screenshotEdit
         if (typeof data.keyboardLayout === "string") root.keyboardLayout = data.keyboardLayout
         if (typeof data.keyboardVariant === "string") root.keyboardVariant = data.keyboardVariant
       } catch (e) {}
