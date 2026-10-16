@@ -13,6 +13,7 @@ They live in `compositor/` and are linked to `~/.config/wayfire/`.
 - `window.lua`: move, resize, pin
 - `workspace-watch.lua`: feeds the pager
 - `theme.lua`: title-bar colors (see `theming.md`)
+- `input.lua`: keyboard layout (see `nixos.md`)
 - `wfipc.lua`: the shared IPC helper
 
 ## IPC
