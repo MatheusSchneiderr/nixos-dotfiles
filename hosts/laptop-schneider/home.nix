@@ -15,7 +15,6 @@ in
 {
   imports = [
     ../../config/bash
-    ../../config/desktop
     ../../config/dotnet-tools
     ../../config/foot
     ../../config/llama-cpp-sycl
@@ -96,8 +95,6 @@ in
     vial
     winboat
     zmk-studio
-    loupe
-    celluloid
 
     nodejs
     python3

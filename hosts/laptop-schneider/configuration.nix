@@ -54,20 +54,12 @@ in
   };
   console.keyMap = "br-abnt2";
 
-  services.greetd = {
-    enable = true;
-    settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd /run/current-system/sw/bin/wayfire";
-  };
-  security.pam.services.greetd.enableGnomeKeyring = true;
-  security.pam.services.swaylock = { };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
   programs.dconf.enable = true;
   services.upower.enable = true;
-  programs.wayfire = {
-    enable = true;
-    plugins = [ pkgs.wayfirePlugins.wayfire-plugins-extra ];
-  };
 
   services.logind.settings.Login.HandlePowerKey = "ignore";
 
@@ -131,10 +123,6 @@ in
     LC_TELEPHONE = "pt_BR.UTF-8";
     LC_TIME = "pt_BR.UTF-8";
   };
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = false;
 
   # Kanata (key remapping / layers) -- Asus-specific hotkey handling,
   # unrelated to the desktop config above.
