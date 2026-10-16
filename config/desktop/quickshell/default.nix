@@ -6,6 +6,7 @@ in
 {
   xdg.configFile."quickshell/panel".source =
     config.lib.file.mkOutOfStoreSymlink "${home}/nixos-dotfiles/config/desktop/quickshell";
+  xdg.configFile."quickshell/xkb-base.lst".source = "${pkgs.xkeyboard-config}/share/X11/xkb/rules/base.lst";
   xdg.configFile."quickshell/theme.json".text = addTheme (builtins.readFile ./theme.json);
 
   # Screen-share picker: the portal asks our Quickshell picker (modules/screencast) which screen to share.

@@ -8,6 +8,7 @@ import qs.modules.lock
 import qs.modules.notifications
 import qs.modules.screencast
 import qs.modules.appearance
+import qs.modules.calendar
 import qs.modules.windows
 
 ShellRoot {
@@ -58,6 +59,8 @@ ShellRoot {
   Wallpaper {}
 
   WayfireTheme {}
+
+  KeyboardLayout {}
 
   LockScreen {}
 
