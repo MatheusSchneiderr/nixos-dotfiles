@@ -21,7 +21,7 @@ RowLayout {
     Layout.preferredWidth: Theme.iconSlot + Theme.spaceSm
     Layout.preferredHeight: Theme.rowHeight
     onActivated: root.glyphClicked()
-    Glyph { anchors.centerIn: parent; text: root.glyph; color: root.glyphColor }
+    Glyph { centered: true; text: root.glyph; color: root.glyphColor }
   }
 
   Slider {

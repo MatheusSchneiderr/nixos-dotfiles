@@ -62,7 +62,7 @@ ColumnLayout {
       Layout.preferredWidth: Theme.rowHeight
       Layout.preferredHeight: Theme.rowHeight
       onActivated: root.shift(-1)
-      Glyph { anchors.centerIn: parent; text: Icons.chevronLeft; font.pixelSize: Theme.fontLarge }
+      Glyph { centered: true; text: Icons.chevronLeft; font.pixelSize: Theme.fontLarge }
     }
 
     Clickable {
@@ -81,7 +81,7 @@ ColumnLayout {
       Layout.preferredWidth: Theme.rowHeight
       Layout.preferredHeight: Theme.rowHeight
       onActivated: root.shift(1)
-      Glyph { anchors.centerIn: parent; text: Icons.chevronRight; font.pixelSize: Theme.fontLarge }
+      Glyph { centered: true; text: Icons.chevronRight; font.pixelSize: Theme.fontLarge }
     }
   }
 
@@ -160,7 +160,7 @@ ColumnLayout {
       Layout.preferredHeight: Theme.buttonHeight
       idleColor: Theme.surface
       onActivated: Ui.openSettings("datetime")
-      Glyph { anchors.centerIn: parent; text: Icons.gear; color: Theme.accent }
+      Glyph { centered: true; text: Icons.gear; color: Theme.accent }
     }
   }
 }

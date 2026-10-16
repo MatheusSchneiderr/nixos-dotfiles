@@ -41,7 +41,7 @@ ColumnLayout {
       Layout.preferredHeight: Theme.buttonHeight
       idleColor: Theme.surface
       onActivated: root.settingsRequested()
-      Glyph { anchors.centerIn: parent; text: Icons.gear; color: Theme.accent }
+      Glyph { centered: true; text: Icons.gear; color: Theme.accent }
     }
   }
 
