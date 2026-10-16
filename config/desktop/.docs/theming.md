@@ -6,7 +6,7 @@ stylix -> theme.json -> Theme.qml <- user (prefs.json)
 
 Stylix gives 16 palette colors. Nix writes them to `theme.json` as `base00`..`base0F`.
 
-`Theme.qml` defines the classes (`textBody`, `iconActive`, `fillCard`...). Each class uses one palette slot.
+`Theme.qml` defines the classes (`textBody`, `iconBody`, `fillCard`...). Each class uses one palette slot.
 
 ## Kinds
 A class belongs to one kind of element:
@@ -14,12 +14,16 @@ A class belongs to one kind of element:
 - `icon*` for icons (`Glyph`)
 - `fill*` for backgrounds and filled parts
 - `line*` for dividers and borders
-- `knob*` for slider and toggle knobs
 - `titlebar*` for Wayfire title bars
+
+Four state colors fit any kind, so they are one input each: `selected`, `danger`, `warning`, `success`.
+They color text, icons and fills the same way.
+
+Knobs (slider, toggle) use `textBody` and `textPrimary`. They have no token of their own.
 
 Text and icons never share a class. `check.sh` fails if a token is used on the wrong kind.
 
-The user picks a slot per class in Settings > Appearance. Picks are saved in `prefs.json`, like `{"iconActive": "base0E"}`.
+The user picks a slot per class in Settings > Appearance. Picks are saved in `prefs.json`, like `{"selected": "base0E"}`.
 
 ## Fallbacks
 bad pick -> the class default slot -> built-in color.
