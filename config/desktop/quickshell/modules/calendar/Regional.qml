@@ -37,12 +37,14 @@ Scope {
   FileView {
     path: Quickshell.env("QS_OS_RELEASE") || "/etc/os-release"
     blockLoading: true
+    printErrors: false
     onLoaded: root.onNixos = /^ID="?nixos"?$/m.test(text())
   }
 
   FileView {
     path: Quickshell.env("QS_XKB_LIST") || (Quickshell.env("HOME") + "/.config/quickshell/xkb-base.lst")
     blockLoading: true
+    printErrors: false
     onLoaded: {
       const found = { layout: [], variant: [] }
       let section = ""
