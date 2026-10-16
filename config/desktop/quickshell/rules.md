@@ -28,6 +28,7 @@ Before you finish:
 - Tray button for a popup: `StatusButton { popup: "network" }`.
 - A service that polls uses `Poller` and has `hold()`/`release()`; the popup or page calls them.
 - `Panel.qml` and `SettingsWindow.qml` list tray buttons and pages by hand, in display order.
+- A long-lived service must not keep per-event data forever: cap it or prune it (notifications keep the newest 50).
 - Feature state lives in the feature. `services/Ui.qml` is only navigation (popup, start menu, settings).
 
 ## New feature

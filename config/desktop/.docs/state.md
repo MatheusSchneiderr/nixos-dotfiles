@@ -13,6 +13,6 @@ repo -> ~/.config (links)        panel -> prefs.json (own settings)
 | `~/Pictures` | wallpapers | kept, not in the repo |
 | NetworkManager, Bluetooth, WirePlumber, cliphist | their own data | kept, not ours |
 
-Notification history lives in memory only.
+Notification history lives in memory only, newest 50.
 
 A reinstall or a new machine loses everything that is not in the repo.
