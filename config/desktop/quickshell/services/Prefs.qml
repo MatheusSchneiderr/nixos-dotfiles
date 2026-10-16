@@ -75,8 +75,9 @@ Scope {
     return { colors: out, changed: changed }
   }
 
+  // Version 3 removed fillHighlight and textHighlight: today and the current workspace use the main color
   // Version 2 swapped fillHighlight and fillMarker names (the main color is now fillPrimary) and split textOnHighlight
-  readonly property int colorsVersion: 2
+  readonly property int colorsVersion: 3
 
   function renameV2(map) {
     const out = {}
@@ -86,6 +87,12 @@ Scope {
       else if (key === "textOnHighlight") { out.textPrimary = map[key]; out.textHighlight = map[key] }
       else out[key] = map[key]
     }
+    return out
+  }
+
+  function dropV3(map) {
+    const out = {}
+    for (const key in map) if (key !== "fillHighlight" && key !== "textHighlight") out[key] = map[key]
     return out
   }
 
@@ -113,7 +120,10 @@ Scope {
           const migrated = root.migrateColors(data.colors)
           let picks = migrated.colors
           let changed = migrated.changed
-          if ((data.colorsVersion || 0) < root.colorsVersion) { picks = root.renameV2(picks); changed = true }
+          const from = data.colorsVersion || 0
+          if (from < 2) picks = root.renameV2(picks)
+          if (from < 3) picks = root.dropV3(picks)
+          if (from < root.colorsVersion) changed = true
           root.colors = picks
           if (changed) root.migrated = true
         }

@@ -23,7 +23,7 @@ Clickable {
     }
     Rectangle {
       anchors.fill: parent
-      color: Theme.fillHighlight
+      color: Theme.fillPrimary
       opacity: root.highlighted ? 0.12 : 0
     }
   }
