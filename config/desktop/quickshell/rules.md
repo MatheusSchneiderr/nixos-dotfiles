@@ -2,9 +2,10 @@
 
 Entry point: `shell.qml`. The whole folder is symlinked to `~/.config/quickshell/panel`, so edits go live and new files need no rebuild. Colours and font come from `theme.json` (generated from Stylix).
 
-Before you finish, run:
-- `./check.sh`: static rules
-- `dev/smoke.sh`: loads everything in a headless Wayfire and fails on any QML warning
+Before you finish:
+- Run `./check.sh`: static rules
+- Run `dev/smoke.sh`: loads everything in a headless Wayfire and fails on any QML warning
+- Check `../.docs/` on every implementation and update what the change touches. A new role group gets its own short doc.
 
 ## Where a file goes
 - Generic UI piece (button, toggle, field): `components/`
